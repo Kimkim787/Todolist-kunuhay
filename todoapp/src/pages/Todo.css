@@ -1,0 +1,283 @@
+/* Page background */
+.page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 40px 16px;
+  
+    background:
+      radial-gradient(1200px 600px at 20% 0%, rgba(99, 102, 241, 0.15), transparent 55%),
+      radial-gradient(900px 500px at 80% 20%, rgba(16, 185, 129, 0.12), transparent 55%),
+      #0b1220;
+  
+    color: #e5e7eb;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+      Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  }
+  
+  .card {
+    width: 100%;
+    max-width: 560px;
+  
+    background: rgba(17, 24, 39, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+  }
+  
+  .header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  
+  .titleWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+  }
+  
+  .subtitle {
+    margin: 0;
+    font-size: 13px;
+    color: rgba(229, 231, 235, 0.7);
+  }
+  
+  .body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  
+  .section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .hint {
+    font-size: 12px;
+    color: rgba(229, 231, 235, 0.6);
+    margin-top: -2px;
+  }
+  
+  /* Alert */
+  .alert {
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(248, 113, 113, 0.35);
+    background: rgba(248, 113, 113, 0.12);
+    color: #fecaca;
+    font-size: 13px;
+  }
+  
+  /* Inputs + Buttons */
+  .input {
+    flex: 1;
+    height: 40px;
+    padding: 0 12px;
+    border-radius: 12px;
+  
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: rgba(255, 255, 255, 0.06);
+    color: #e5e7eb;
+    outline: none;
+  }
+  
+  .input::placeholder {
+    color: rgba(229, 231, 235, 0.55);
+  }
+  
+  .input:focus {
+    border-color: rgba(99, 102, 241, 0.55);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.18);
+  }
+  
+  .input:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  .btn {
+    height: 40px;
+    padding: 0 12px;
+    border-radius: 12px;
+  
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: rgba(255, 255, 255, 0.08);
+    color: #e5e7eb;
+  
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  .btn:hover:not(:disabled) {
+    filter: brightness(1.05);
+  }
+  
+  .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .btnPrimary {
+    background: linear-gradient(
+      135deg,
+      rgba(99, 102, 241, 0.95),
+      rgba(79, 70, 229, 0.95)
+    );
+    border: 1px solid rgba(99, 102, 241, 0.45);
+  }
+  
+  .btnDanger {
+    background: rgba(248, 113, 113, 0.14);
+    border: 1px solid rgba(248, 113, 113, 0.30);
+    color: #fecaca;
+  }
+  
+  .pushRight {
+    margin-left: auto;
+  }
+  
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 2px 0;
+  }
+  
+  /* Badge */
+  .badge {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 999px;
+  
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(229, 231, 235, 0.8);
+    white-space: nowrap;
+  }
+  
+  /* List */
+  .list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    overflow: hidden;
+  
+    background: rgba(255, 255, 255, 0.03);
+  }
+  
+  .listItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  
+    padding: 12px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  
+  .listItemLast {
+    border-bottom: none;
+  }
+  
+  .empty {
+    opacity: 0.75;
+  }
+  
+  /* Status pill */
+  .status {
+    min-width: 54px;
+    text-align: center;
+  
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 999px;
+  
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(229, 231, 235, 0.8);
+  }
+  
+  .statusDone {
+    border-color: rgba(16, 185, 129, 0.35);
+    background: rgba(16, 185, 129, 0.12);
+    color: #a7f3d0;
+  }
+  
+  .statusTodo {
+    border-color: rgba(255, 255, 255, 0.10);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(229, 231, 235, 0.8);
+  }
+  
+  .todoTextWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+  
+  .todoTitle {
+    font-size: 14px;
+    font-weight: 600;
+  
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .todoMeta {
+    font-size: 12px;
+    color: rgba(229, 231, 235, 0.7);
+  }
+  
+  /* Footer */
+  .footer {
+    padding: 14px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    color: rgba(229, 231, 235, 0.75);
+    font-size: 13px;
+  }
+  
+  .muted {
+    opacity: 0.75;
+  }
+  
+  /* Loading skeleton (simple) */
+  .skeleton {
+    padding: 14px;
+  }
+  
+  .skeletonText {
+    opacity: 0.75;
+    font-size: 13px;
+  }
+  

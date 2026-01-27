@@ -1,0 +1,57 @@
+# --- Flutter / Dart ---
+.dart_tool/
+.packages
+.pub/
+build/
+**/build/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Android build outputs
+**/*.apk
+**/*.aab
+**/*.keystore
+android/.gradle/
+android/local.properties
+android/**/GeneratedPluginRegistrant.java
+
+# iOS build outputs
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Flutter/app.flx
+ios/Flutter/App.framework
+ios/Flutter/engine/
+ios/Flutter/ephemeral/
+ios/Runner/GeneratedPluginRegistrant.*
+
+# --- .NET / C# ---
+bin/
+obj/
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio / Rider
+.vs/
+.idea/
+*.swp
+
+# --- Logs / temp ---
+*.log
+*.tmp
+
+# --- Secrets (DON'T COMMIT) ---
+appsettings.Development.json
+appsettings.*.json
+*.pfx
+*.cer
+
+# --- SQL Server local files (if any) ---
+*.mdf
+*.ldf
