@@ -8,7 +8,7 @@ public partial class TodoContext : DbContext
 {
     public TodoContext()
     {
-        
+
     }
 
     public TodoContext(DbContextOptions<TodoContext> options)
@@ -39,10 +39,49 @@ public partial class TodoContext : DbContext
             entity.Property(e => e.Title)
                 .HasMaxLength(255)
                 .HasColumnName("title");
+
+            entity.Property(x => x.CreatedAt)
+            .HasColumnName("created_at")
+            .HasDefaultValueSql("SYSUTCDATETIME()");
+
+            entity.Property(x => x.LastUpdated)
+            .HasColumnName("last_updated")
+            .HasDefaultValueSql("SYSUTCDATETIME()");
         });
 
         OnModelCreatingPartial(modelBuilder);
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+    public override int SaveChanges()
+    {
+        TouchLastUpdated();
+        return base.SaveChanges();
+    }
+
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        TouchLastUpdated();
+        return base.SaveChangesAsync(cancellationToken);
+    }
+
+    private void TouchLastUpdated()
+    {
+        var now = DateTime.UtcNow;
+
+        foreach (var entry in ChangeTracker.Entries<Todo>())
+        {
+            if (entry.State == EntityState.Added)
+            {
+                entry.Entity.CreatedAt = now;
+                entry.Entity.LastUpdated = now;
+            }
+
+            if (entry.State == EntityState.Modified)
+            {
+                entry.Entity.LastUpdated = now;
+            }
+        }
+    }
 }

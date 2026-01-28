@@ -10,6 +10,10 @@ public partial class Todo
     public string Title { get; set; } = null!;
 
     public bool IsDone { get; set; }
+
+    public DateTime CreatedAt { get; set; }
+
+    public DateTime LastUpdated { get; set; }
 }
 
 public partial class TodoAdd
