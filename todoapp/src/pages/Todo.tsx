@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Todo.css";
 
 type Todo = { id: number; title: string; isDone: boolean };
@@ -6,6 +7,7 @@ type Todo = { id: number; title: string; isDone: boolean };
 const API = "http://localhost:5202/todos";
 
 export default function Todos() {
+  const nav = useNavigate();
   const [todos, setTodos] = useState<Todo[]>([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
@@ -20,6 +22,11 @@ export default function Todos() {
   // delete state (track which id is being deleted)
   const [deletingId, setDeletingId] = useState<number | null>(null);
   const [togglingId, setTogglingId] = useState<number | null>(null);
+
+  function logout() {
+    localStorage.removeItem("user");
+    nav("/login", { replace: true });
+  }
 
   async function load() {
     try {
@@ -107,7 +114,6 @@ export default function Todos() {
     } finally {
       setTogglingId(null);
     }
-    togglingId
   }
 
   const filteredTodos = useMemo(() => {
@@ -147,7 +153,12 @@ export default function Todos() {
             <h1 className="title">Todos</h1>
             <p className="subtitle">Keep track of what matters today.</p>
           </div>
-          <span className="badge">{showingText}</span>
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            <span className="badge">{showingText}</span>
+            <button className="btn" type="button" onClick={logout}>
+              Logout
+            </button>
+          </div>
         </div>
 
         <div className="body">

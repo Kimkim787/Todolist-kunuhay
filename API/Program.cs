@@ -12,6 +12,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddDbContext<TodoContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddDbContext<UserContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    
 // CORS
 builder.Services.AddCors(options =>
 {
@@ -19,8 +22,8 @@ builder.Services.AddCors(options =>
         policy.WithOrigins(
                 "http://localhost:3000", // CRA
                 "http://localhost:5173",  // Vite
-                "http://localhost:5174" // Vite 2
-
+                "http://localhost:5174", // Vite 2
+                "http://localhost:5174"
             )
             .AllowAnyHeader()
             .AllowAnyMethod()

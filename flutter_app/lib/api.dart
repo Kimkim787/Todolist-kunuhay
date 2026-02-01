@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-const baseUrl = "http://192.168.254.115:5202/todos";
+const baseUrl = "http://192.168.70.16:5202/todos";
 
 class Todo {
   final int id;

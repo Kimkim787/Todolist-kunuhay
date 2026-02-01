@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'api.dart';
+import 'login.dart';
 
 void main() => runApp(const MyApp());
 
@@ -19,13 +21,66 @@ class MyApp extends StatelessWidget {
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
         ),
       ),
-      home: const TodoPage(),
+      home: const AuthGate(),
     );
   }
 }
 
+class AuthGate extends StatefulWidget {
+  const AuthGate({super.key});
+
+  @override
+  State<AuthGate> createState() => _AuthGateState();
+}
+
+class _AuthGateState extends State<AuthGate> {
+  bool _loading = true;
+  bool _loggedIn = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkLogin();
+  }
+
+  Future<void> _checkLogin() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _loggedIn = prefs.getString("user") != null;
+      _loading = false;
+    });
+  }
+
+  Future<void> _handleLoggedIn() async {
+    setState(() => _loggedIn = true);
+  }
+
+  Future<void> _handleLogout() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove("user");
+    setState(() => _loggedIn = false);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_loading) {
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    if (_loggedIn) {
+      return TodoPage(onLogout: _handleLogout);
+    }
+
+    return LoginPage(onLoggedIn: _handleLoggedIn);
+  }
+}
+
 class TodoPage extends StatefulWidget {
-  const TodoPage({super.key});
+  const TodoPage({super.key, this.onLogout});
+
+  final Future<void> Function()? onLogout;
 
   @override
   State<TodoPage> createState() => _TodoPageState();
@@ -96,12 +151,23 @@ class _TodoPageState extends State<TodoPage> {
     }
   }
 
+  Future<void> _logout() async {
+    if (widget.onLogout != null) {
+      await widget.onLogout!();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Todo List"),
         actions: [
+          IconButton(
+            onPressed: _logout,
+            icon: const Icon(Icons.logout),
+            tooltip: "Logout",
+          ),
           IconButton(
             onPressed: _loadTodos,
             icon: const Icon(Icons.refresh),
